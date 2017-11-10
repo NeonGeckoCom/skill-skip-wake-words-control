@@ -18,44 +18,45 @@ LOGGER = getLogger(__name__)
 
 class CPISkipWakeWordsControlSkill(MycroftSkill):
     """
-            Class name: CPISkipWakeWordsControlSkill
+    Class name: CPISkipWakeWordsControlSkill
 
-            Purpose: Creates the "CaffeineWizSkill" skill, which works using
-                Mycroft-core with NeonGeckoCom modifications, provides the user with
-                the functionality to choose between continuous audio recording, which
-                would not require wake words for Mycroft to work, and the "standard"
-                mode, where the wake word "Hey Mycroft" is required.
+    Purpose: Creates the "CaffeineWizSkill" skill, which works using
+        Mycroft-core with NeonGeckoCom modifications, provides the user with
+        the functionality to choose between continuous audio recording, which
+        would not require wake words for Mycroft to work, and the "standard"
+        mode, where the wake word "Hey Mycroft" is required.
 
-                In addition, this skill allows the user to modify their audio and text
-                recording permissions, which is essential for the "my coupons" skill
-                and general user privacy. Skill works with wide variety of potential
-                requests phrases.
+        In addition, this skill allows the user to modify their audio and text
+        recording permissions, which is essential for the "my coupons" skill
+        and general user privacy. Skill works with wide variety of potential
+        requests phrases.
 
-            Note: This skill would not proceed without the clear confirmation of
-                the command from the user by asking
+    Note: This skill would not proceed without the clear confirmation of
+        the command from the user by asking
 
-                "Should I stop skipping wake words?"
+        "Should I stop skipping wake words?"
 
-                and expecting a positive answer.
+        and expecting a positive answer.
 
 
-            Supporting Files:
-                 skill-skip-wake-words-control/vocab/en-us/ConfirmNo.voc
-                 skill-skip-wake-words-control/vocab/en-us/ConfirmYes.voc
-                 skill-skip-wake-words-control/vocab/en-us/StartSkipping1.voc
-                 skill-skip-wake-words-control/vocab/en-us/Skipping2.voc
-                 skill-skip-wake-words-control/vocab/en-us/Skipping3.voc
-                 skill-skip-wake-words-control/vocab/en-us/StopSkipping1.voc
+    Supporting Files:
+         skill-skip-wake-words-control/vocab/en-us/ConfirmNo.voc
+         skill-skip-wake-words-control/vocab/en-us/ConfirmYes.voc
+         skill-skip-wake-words-control/vocab/en-us/StartSkipping1.voc
+         skill-skip-wake-words-control/vocab/en-us/Skipping2.voc
+         skill-skip-wake-words-control/vocab/en-us/Skipping3.voc
+         skill-skip-wake-words-control/vocab/en-us/StopSkipping1.voc
 
-                 skill-skip-wake-words-control/test/intent/CPIConfirmIntentNo.intent.json
-                 skill-skip-wake-words-control/test/intent/CPIConfirmIntentYes.intent.json
-                 skill-skip-wake-words-control/test/intent/CPISkipWakeWordsStart.intent.json
-                 skill-skip-wake-words-control/test/intent/CPISkipWakeWordsStop.intent.json
+         skill-skip-wake-words-control/test/intent/CPIConfirmIntentNo.intent.json
+         skill-skip-wake-words-control/test/intent/CPIConfirmIntentYes.intent.json
+         skill-skip-wake-words-control/test/intent/CPISkipWakeWordsStart.intent.json
+         skill-skip-wake-words-control/test/intent/CPISkipWakeWordsStop.intent.json
         """
 
     def __init__(self):
         # name the new class:
-        super(CPISkipWakeWordsControlSkill, self).__init__(name="CPISkipWakeWordsControlSkill")
+        super(CPISkipWakeWordsControlSkill, self)\
+            .__init__(name="CPISkipWakeWordsControlSkill")
 
     def initialize(self):
         # name intent and build it:
@@ -111,7 +112,7 @@ class CPISkipWakeWordsControlSkill(MycroftSkill):
 
     def handle_confirm_yes(self, message):
 
-        if check_for_signal("StartSkippingWW",0):
+        if check_for_signal("StartSkippingWW", 0):
             create_signal('skip_wake_word')
             create_signal('restartedFromSkill')
             self.speak("o k. Starting to skip wake words.", False)
@@ -119,7 +120,7 @@ class CPISkipWakeWordsControlSkill(MycroftSkill):
             # self.emitter.emit(Message('recognizer_loop:reload'))
             self.emitter.emit(Message('recognizer_loop:restart'))
 
-        elif check_for_signal("StopSkippingWW",0):
+        elif check_for_signal("StopSkippingWW", 0):
             check_for_signal('skip_wake_word', 0)
             create_signal('restartedFromSkill')
             self.speak("o k. Stopping the skipping of wake words.", False)
