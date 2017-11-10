@@ -40,35 +40,17 @@ class CPISkipWakeWordsControlSkill(MycroftSkill):
 
 
             Supporting Files:
-                 skill-permit-audio-recording/vocab/en-us/ConfirmNo.voc
-                 skill-permit-audio-recording/vocab/en-us/ConfirmYes.voc
-                 skill-permit-audio-recording/vocab/en-us/DenyRecording1.voc
-                 skill-permit-audio-recording/vocab/en-us/DenyRecording2.voc
-                 skill-permit-audio-recording/vocab/en-us/DenyRecording3.voc
-                 skill-permit-audio-recording/vocab/en-us/InternetSTT1.voc
-                 skill-permit-audio-recording/vocab/en-us/InternetSTT2.voc
-                 skill-permit-audio-recording/vocab/en-us/InternetSTT3.voc
-                 skill-permit-audio-recording/vocab/en-us/LocalSTT1.voc
-                 skill-permit-audio-recording/vocab/en-us/LocalSTT2.voc
-                 skill-permit-audio-recording/vocab/en-us/LocalSTT3.voc
-                 skill-permit-audio-recording/vocab/en-us/PermitRecording1.voc
-                 skill-permit-audio-recording/vocab/en-us/PermitRecording2.voc
-                 skill-permit-audio-recording/vocab/en-us/PermitRecording3.voc
-                 skill-permit-audio-recording/vocab/en-us/StartSkipping1.voc
-                 skill-permit-audio-recording/vocab/en-us/StartSkipping2.voc
-                 skill-permit-audio-recording/vocab/en-us/StartSkipping3.voc
-                 skill-permit-audio-recording/vocab/en-us/StopSkipping1.voc
-                 skill-permit-audio-recording/vocab/en-us/StopSkipping2.voc
-                 skill-permit-audio-recording/vocab/en-us/StopSkipping3.voc
+                 skill-skip-wake-words-control/vocab/en-us/ConfirmNo.voc
+                 skill-skip-wake-words-control/vocab/en-us/ConfirmYes.voc
+                 skill-skip-wake-words-control/vocab/en-us/StartSkipping1.voc
+                 skill-skip-wake-words-control/vocab/en-us/Skipping2.voc
+                 skill-skip-wake-words-control/vocab/en-us/Skipping3.voc
+                 skill-skip-wake-words-control/vocab/en-us/StopSkipping1.voc
 
-                 skill-permit-audio-recording/test/intent/CPIConfirmIntentNo.intent.json
-                 skill-permit-audio-recording/test/intent/CPIConfirmIntentYes.intent.json
-                 skill-permit-audio-recording/test/intent/CPIDenyRecording.intent.json
-                 skill-permit-audio-recording/test/intent/CPIDoInternetSTT.intent.json
-                 skill-permit-audio-recording/test/intent/CPIDoLocalSTT.intent.json
-                 skill-permit-audio-recording/test/intent/CPIPermitRecording.intent.json
-                 skill-permit-audio-recording/test/intent/CPISkipWakeWordsStart.intent.json
-                 skill-permit-audio-recording/test/intent/CPISkipWakeWordsStop.intent.json
+                 skill-skip-wake-words-control/test/intent/CPIConfirmIntentNo.intent.json
+                 skill-skip-wake-words-control/test/intent/CPIConfirmIntentYes.intent.json
+                 skill-skip-wake-words-control/test/intent/CPISkipWakeWordsStart.intent.json
+                 skill-skip-wake-words-control/test/intent/CPISkipWakeWordsStop.intent.json
         """
 
     def __init__(self):
@@ -79,16 +61,16 @@ class CPISkipWakeWordsControlSkill(MycroftSkill):
         # name intent and build it:
         start_skipping = IntentBuilder("StartSkippingWakeWords") \
             .require("StartSkipping1") \
-            .require("StartSkipping2") \
-            .require("StartSkipping3") \
+            .require("Skipping2") \
+            .require("Skipping3") \
             .build()
         # register:
         self.register_intent(start_skipping, self.handle_start_skipping)
 
         stop_skipping = IntentBuilder("StopSkippingWakeWords") \
             .require("StopSkipping1") \
-            .require("StopSkipping2") \
-            .require("StopSkipping3") \
+            .require("Skipping2") \
+            .require("Skipping3") \
             .build()
         # register:
         self.register_intent(stop_skipping, self.handle_stop_skipping)
